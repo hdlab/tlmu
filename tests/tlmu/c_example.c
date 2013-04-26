@@ -200,6 +200,8 @@ int main(int argc, char **argv)
 		tlmu_append_arg(&sys[i].t.q, "-kernel");
 		tlmu_append_arg(&sys[i].t.q, sys[i].elfimage);
 
+		tlmu_append_arg(&sys[i].t.q, "-nographic");
+
 		/*
 		 * Register our per instance pointer carried back in
 		 * callbacks.
