@@ -52,6 +52,8 @@ public:
 
 	SC_HAS_PROCESS(iconnect);
 	iconnect(sc_core::sc_module_name name);
+	~iconnect();
+
 	virtual void b_transport(int id,
 				 tlm::tlm_generic_payload& trans,
 				 sc_time& delay);
@@ -102,6 +104,16 @@ iconnect<N_INITIATORS, N_TARGETS>::iconnect (sc_module_name name)
 		i_sk[i]->register_invalidate_direct_mem_ptr(this,
 				&iconnect::invalidate_direct_mem_ptr, i);
 		map[i].size = 0;
+	}
+}
+template<unsigned int N_INITIATORS, unsigned int N_TARGETS>
+iconnect<N_INITIATORS, N_TARGETS>::~iconnect ()
+{
+	unsigned int i;
+
+	for (i = 0; i < N_INITIATORS; i++) {
+		if (t_sk[i]) { delete t_sk[i]; t_sk[i] = 0; }
+		if (i_sk[i]) { delete i_sk[i]; i_sk[i] = 0; }
 	}
 }
 
