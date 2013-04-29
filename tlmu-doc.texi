@@ -78,6 +78,8 @@ CRIS
 ARM
 @item
 MIPS
+@item
+OpenRISC
 @end itemize
 
 I'd expect most (if not all) archs to work with little integration, but
@@ -117,9 +119,14 @@ configure, e.g:
 % ../tlmu/configure --extra-cflags=-fPIC --disable-strip
 @end example
 
-If you want to save time, and only build for a subset of the archs (e.g CRIS, ARM and MIPS):
+If you want to save time, and only build for a subset of the archs (e.g CRIS, ARM, MIPS and OpenRISC):
 @example
-% ../tlmu/configure --target-list=cris-softmmu,mipsel-softmmu,arm-softmmu --extra-cflags=-fPIC
+% ../tlmu/configure --target-list=cris-softmmu,mipsel-softmmu,arm-softmmu,or32-softmmu --extra-cflags=-fPIC
+@end example
+
+If you encountered any trouble, it is safe to disable non-necessary features during configure:
+@example
+% ../tlmu/configure --target-list=cris-softmmu,mipsel-softmmu,arm-softmmu,or32-softmmu --extra-cflags=-fPIC --disable-pie --disable-curses --disable-sdl --disable-vnc --disable-xen --disable-kvm
 @end example
 
 
