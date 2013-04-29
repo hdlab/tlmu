@@ -434,6 +434,9 @@ void tlmu_sc::process(void)
 		tlmu_append_arg(&q, "-gdb");
 		tlmu_append_arg(&q, gdb_conn);
 	}
+
+	tlmu_append_arg(&q, "-nographic");
+
 	is_running = true;
 	start.notify();
 	tlmu_run(&q);

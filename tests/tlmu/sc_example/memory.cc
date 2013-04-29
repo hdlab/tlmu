@@ -45,6 +45,11 @@ memory::memory(sc_module_name name, sc_time latency, int size_)
 	memset(&mem[0], 0, size);
 }
 
+memory::~memory()
+{
+	if (mem) { delete [] mem; mem = 0; }
+}
+
 void memory::b_transport(tlm::tlm_generic_payload& trans, sc_time& delay)
 {
 	tlm::tlm_command cmd = trans.get_command();

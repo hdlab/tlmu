@@ -74,7 +74,7 @@ obj-$(CONFIG_TCG_INTERPRETER) += tci.o
 obj-$(CONFIG_TCG_INTERPRETER) += disas/tci.o
 obj-y += fpu/softfloat.o
 obj-y += disas.o
-obj-y += tlm.o stubs/arch-query-cpu-def.o
+obj-y += tlm.o
 obj-$(CONFIG_TCI_DIS) += tci-dis.o
 obj-y += target-$(TARGET_BASE_ARCH)/
 obj-y += disas.o
@@ -166,7 +166,7 @@ endif
 tobj-y = $(obj-y)
 tobj-y += $(obj-$(TARGET_BASE_ARCH)-y)
 
-$(LIB_TLMU): $(all-obj-y) ../libqemuutil.a
+$(LIB_TLMU): $(all-obj-y) ../stubs/arch-query-cpu-def.o ../libqemuutil.a
 	$(CC) -shared -Wl,-soname,$(LIB_TLMU) \
 	        -Wl,--version-script=$(SRC_PATH)/lib-tlmu.version \
 	        -Wl,--whole-archive -o $@ $^ -Wl,--no-whole-archive -pthread $(LIBS)

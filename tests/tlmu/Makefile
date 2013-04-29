@@ -29,7 +29,7 @@ run:
 	LD_LIBRARY_PATH=./lib ./c_example
 
 run-sc-all: run
-	LD_LIBRARY_PATH=./lib ./sc_example/sc_example
+	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):./lib ./sc_example/sc_example
 
 clean:
 	$(MAKE) -C sc_example clean

@@ -4,13 +4,11 @@ VPATH=$(SRC_PATH)/tests/tlmu/sc_example/
 
 TLMU=$(CURDIR)/..
 # Edit these to match your install paths
-SYSTEMC = /opt/systemc
-TLM2 = /opt/systemc/TLM-2009-07-15
+SYSTEMC = /opt/systemc-2.3.0
 
 CXXFLAGS += -O2 -g
 CPPFLAGS += -I $(SRC_PATH)/tests/tlmu
 CPPFLAGS += -I $(SYSTEMC)/include/
-CPPFLAGS += -I $(TLM2)/include/tlm
 CPPFLAGS += -I $(TLMU)/include/tlmu
 
 LDFLAGS = -L $(SYSTEMC)/lib-linux64

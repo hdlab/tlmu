@@ -149,6 +149,23 @@ SC_MODULE(Top)
 		m_qk.set_global_quantum(sc_time(1, SC_US));
 	}
 
+	~Top()
+	{
+		if (bus) { delete bus; bus = 0; }
+		if (magic) { delete magic; magic = 0; }
+
+		if (mem[0]) { delete mem[0]; mem[0] = 0; }
+		if (mem[1]) { delete mem[1]; mem[1] = 0; }
+
+		if (cpu[0]) { delete cpu[0]; cpu[0] = 0; }
+#if NR_CPUS >=2
+		if (cpu[1]) { delete cpu[1]; cpu[1] = 0; }
+#endif
+#if NR_CPUS >=3
+		if (cpu[2]) { delete cpu[2]; cpu[2] = 0; }
+#endif
+	}
+
 private:
 	tlm_utils::tlm_quantumkeeper m_qk;
 };
@@ -161,5 +178,7 @@ int sc_main(int argc, char* argv[])
 
 	top = new Top("top");
 	sc_start();
+
+	delete top;
 	return 0;
 }
