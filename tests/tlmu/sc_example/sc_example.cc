@@ -178,5 +178,7 @@ int sc_main(int argc, char* argv[])
 
 	top = new Top("top");
 	sc_start();
+
+	delete top;
 	return 0;
 }

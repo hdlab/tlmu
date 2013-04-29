@@ -75,7 +75,7 @@ void magicdev::b_transport(tlm::tlm_generic_payload& trans, sc_time& delay)
 				     << hex << * (uint32_t *) data
 				     << " " << sc_time_stamp() << "\n";
 				sc_stop();
-				exit(1);
+				// exit(1);
 				break;
 		}
 	}
